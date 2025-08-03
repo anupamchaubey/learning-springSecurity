@@ -15,28 +15,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/admin").hasRole("ADMIN")
-                        .requestMatchers("/user").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/", "/login", "/register").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/user").hasRole("USER")
+                        .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/user", true)
+                        .defaultSuccessUrl("/user", true) // or "/admin" depending on role
                         .permitAll()
                 )
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/login?logout")
-                        .permitAll());
-
+                .logout(logout -> logout.permitAll());
         return http.build();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService(MyUserDetailsService customService) {
-        return customService;
     }
 
     @Bean

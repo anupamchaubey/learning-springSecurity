@@ -20,12 +20,12 @@ public class Main {
         return args -> {
             User admin = new User();
             admin.setUsername("admin");
-            admin.setPassword(encoder.encode("admin123"));
+            admin.setPassword(encoder.encode("admin123")); // ✅ ENCODED
             admin.setRole("ADMIN");
 
             User user = new User();
             user.setUsername("anupam");
-            user.setPassword(encoder.encode("password"));
+            user.setPassword(encoder.encode("password")); // ✅ ENCODED
             user.setRole("USER");
 
             repo.save(admin);
@@ -33,6 +33,7 @@ public class Main {
         };
     }
 
-
 }
+
+
 
