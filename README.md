@@ -1,5 +1,4 @@
-check the login, logout and register functionality :
-https://anupamchaubey.github.io/learning-springSecurity
+
 
 just learning spring secuity by practiccal implementation >>> 
 
